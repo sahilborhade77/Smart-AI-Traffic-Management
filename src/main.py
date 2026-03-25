@@ -86,31 +86,38 @@ with t_hub:
         c2.metric("Total Vehicles (Sim)", "0", "Run Simulator first")
         c3.metric("Avg Delay (AI)", "---", "---")
         
-    c4.metric(f"City Risk Multiplier", f"{risk_factor}X", "Elevated" if risk_factor > 1.0 else "Normal", delta_color="inverse")
-
-    st.markdown("---")
-    
-    col_a, col_b = st.columns([2, 1])
-    with col_a:
-        st.subheader("Live City Heatmap (Simulation)")
-        np.random.seed(int(time.time()) % 10000)  # Dynamic seed for live-feel movement
-        # Generate scattered simulation node data across 5 major Indian cities
-        cities_coords = [
-            [19.0760, 72.8777], # Mumbai
-            [28.7041, 77.1025], # Delhi
-            [18.5204, 73.8567], # Pune
-            [12.9716, 77.5946], # Bengaluru
-            [13.0827, 80.2707]  # Chennai
+        st.subheader("Regional Traffic Command Node (Live Folium)")
+        import folium
+        from streamlit_folium import st_folium
+        
+        # Fixed Intersections with Dynamic Status
+        m = folium.Map(location=[19.0760, 72.8777], zoom_start=11, tiles="CartoDB dark_matter")
+        intersections = [
+            {"name": "Marine Drive Junction", "coord": [18.9432, 72.8231]},
+            {"name": "Sion Circle", "coord": [19.0400, 72.8631]},
+            {"name": "Bandra Intersection", "coord": [19.0596, 72.8295]},
+            {"name": "Andheri East Node", "coord": [19.1136, 72.8697]},
+            {"name": "Borivali Highway", "coord": [19.2288, 72.8541]}
         ]
         
-        frames = []
-        for coord in cities_coords:
-            frames.append(pd.DataFrame(np.random.randn(40, 2) / [30, 30] + coord, columns=['lat', 'lon']))
+        for idx, inter in enumerate(intersections):
+            status = "green" if st.session_state.get('sim_improvement_pct', 0) > 30 else "orange"
+            if idx == 0 and st.session_state.get('total_sim_vehicles', 0) > 200: status = "red"
             
-        df_map = pd.concat(frames, ignore_index=True)
-        st.map(df_map, zoom=4, height=450)
+            folium.CircleMarker(
+                location=inter["coord"],
+                radius=10,
+                popup=inter["name"],
+                color=status,
+                fill=True
+            ).add_to(m)
+        
+        st_folium(m, width=650, height=450)
         
     with col_b:
+        # Show Weather Status Badge
+        source_label = "🟢 LIVE DATA" if cur_weather.get('is_live') else "🔴 OFFLINE MODE (SIM)"
+        st.markdown(f"**Network Status:** `{source_label}`")
         st.subheader("Autonomous System Logs")
         st.info(f"14:32:45 | 📡 Weather sync: Mumbai ({cur_weather.get('condition')})", icon="☁️")
         st.success("14:32:01 | 🟩 Green Wave executed flawlessly (Sector 4).", icon="✅")
@@ -161,13 +168,28 @@ with t_predict:
                     voice_alerts.trigger_accident_warning()
                 else:
                     severity, color = "SLIGHT / MINOR", "green"
+                
+                # Update trend data
+                if 'pred_trend' not in st.session_state:
+                    st.session_state['pred_trend'] = []
+                st.session_state['pred_trend'].append(prediction)
+                if len(st.session_state['pred_trend']) > 10: st.session_state['pred_trend'].pop(0)
                     
                 st.markdown(f"### Predicted Accident Severity: <br><span style='color:{color}; font-size:2rem; font-weight:800;'>{severity}</span>", unsafe_allow_html=True)
                 st.progress(int(probs[prediction] * 100))
                 st.caption(f"Machine Learning Confidence Level: {probs[prediction]*100:.2f}%")
-
+                
         with c2:
-            st.subheader("XAI: Feature Importance Analysis (Live Metrics)")
+            st.subheader("Historical Prediction Trend (Last 10)")
+            if 'pred_trend' in st.session_state and len(st.session_state['pred_trend']) > 0:
+                trend_df = pd.DataFrame({"Prediction": st.session_state['pred_trend']})
+                fig_trend = px.line(trend_df, y="Prediction", range_y=[-0.5, 2.5], markers=True, title="Severity Volatility Tracker")
+                fig_trend.update_layout(yaxis=dict(tickvals=[0, 1, 2], ticktext=['Fatal', 'Serious', 'Minor']))
+                st.plotly_chart(fig_trend, use_container_width=True)
+            else:
+                st.info("Run a prediction to see trend data.")
+
+            st.subheader("XAI: Feature Importance Analysis")
             importances = model.feature_importances_
             features = ['Road Surface', 'Junction', 'Weather', 'Light', 'Cause']
             
@@ -227,9 +249,18 @@ with t_signal:
                 
                 c_a, c_b = st.columns(2)
                 c_a.info(f"**🔴 Legacy Fixed Delay Penalty**: {f_delay} units")
-                c_b.success(f"**🟢 AI Smart Signal Delay**: {a_delay:.1f} units \n\n*Optimized Allotments: {alloc}*")
+                c_b.success(f"**🟢 AI Smart Signal Delay**: {a_delay:.1f} units")
+                
+                st.markdown("#### Dynamic Green-Wave Countdown Phase")
+                cols = st.columns(4)
+                for idx, (direction, time_val) in enumerate(alloc.items()):
+                    with cols[idx]:
+                        # Animated countdown bar
+                        st.write(f"**{direction}**")
+                        st.progress(100)
+                        st.caption(f"Time: {time_val}s")
             
-            time.sleep(1.8) # Provide dramatic visceral animation time for judges
+            time.sleep(1.8) # Dramatic animation time
             
         st.markdown("---")
         improvement = ((fixed_total - ai_total) / fixed_total) * 100

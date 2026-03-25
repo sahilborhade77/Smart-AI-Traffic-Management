@@ -65,11 +65,19 @@ def get_live_weather(city_name="Mumbai"):
             "temperature": temp,
             "wind_speed": wind_speed,
             "condition": condition,
-            "wmo_code": code
+            "wmo_code": code,
+            "is_live": True
         }
     except Exception as e:
         print(f"⚠️ Network Error (Graceful Fallback Engaged): {e}")
-        return {"city": city_name, "temperature": 32.0, "wind_speed": 10.0, "condition": "Clear (Simulated Offline)", "wmo_code": 0}
+        return {
+            "city": city_name, 
+            "temperature": 32.0, 
+            "wind_speed": 10.0, 
+            "condition": "Clear (Simulated Offline)", 
+            "wmo_code": 0,
+            "is_live": False
+        }
 
 def get_risk_multiplier(wmo_code):
     """

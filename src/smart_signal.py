@@ -5,8 +5,25 @@ class IntersectionSimulator:
         # 4 directions for our standard intersection
         self.directions = ['North', 'South', 'East', 'West']
         
-    def generate_density(self):
-        """Simulated vehicle density (YOLOv8 integration in progress)."""
+    def generate_density(self, use_camera=False):
+        """
+        Simulated vehicle density (YOLOv8 integration in progress).
+        If use_camera is True, it attempts to read from a live feed.
+        """
+        if use_camera:
+            try:
+                import cv2
+                cap = cv2.VideoCapture(0) # Default webcam
+                ret, frame = cap.read()
+                cap.release()
+                if ret:
+                    # In a real implementation, we would run model.predict(frame) here
+                    # For now, we simulate the 'reading' of the camera but still return random data 
+                    # for the count pending a full multi-threaded YOLO implementation.
+                    return {d: random.randint(10, 50) for d in self.directions}
+            except:
+                pass
+                
         return {
             'North': random.randint(5, 85),
             'South': random.randint(5, 85),
