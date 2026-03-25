@@ -6,8 +6,7 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 1: Foundation & Setup**
-**March 25 (Day 1) - TODAY**
-- [ ] **Admin**: Register for the competition & finalize your team of up to 4 members. (URGENT)
+**(Day 1) - TODAY**
 - [ ] **Repo**: Initialize the GitHub repository with standard folder structure (`data`, `models`, `src`, `notebooks`).
 - [ ] **Env**: Install all libraries: `pip install scikit-learn ultralytics xgboost pyttsx3 nltk torch streamlit plotly`.
 - [ ] **Data**: Download the Kaggle road accident dataset.
@@ -16,11 +15,11 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 2: Core ML Models**
-**March 26 (Day 2): Accident Prediction Module - Part 1**
+**(Day 2): Accident Prediction Module - Part 1**
 - [ ] **Data Prep**: Clean and preprocess the CSV dataset. Handle missing values.
 - [ ] **Feature Engineering**: Extract road type, speed limit, turn angle, time of day, and weather.
 
-**March 27 (Day 3): Accident Prediction Module - Part 2**
+**(Day 3): Accident Prediction Module - Part 2**
 - [ ] **Model Training**: Train Random Forest and Extra Trees Classifiers.
 - [ ] **Evaluation**: Target 95%+ test accuracy and handle overfitting.
 - [ ] **XAI**: Plot feature importance chart (crucial for your report!).
@@ -30,7 +29,7 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 3: AI Traffic Flow**
-**March 28 (Day 4): Smart Signal Control**
+**(Day 4): Smart Signal Control**
 - [ ] **Simulation**: Simulate 4-way intersection data in Python.
 - [ ] **Logic**: Implement density-based green light duration logic.
 - [ ] **Metrics**: Log delay comparison—fixed-time vs density-based (show ~31% improvement!).
@@ -40,7 +39,7 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 4: Expanding Context**
-**March 29 (Day 5): Weather Integration**
+**(Day 5): Weather Integration**
 - [ ] **API Setup**: Create a free OpenWeatherMap API account.
 - [ ] **Implementation**: Fetch live weather by city name.
 - [ ] **Logic**: Map weather conditions to risk multiplier (e.g., Clear: 1.0X -> Snow: 2.0X).
@@ -50,7 +49,7 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 5: Computer Vision**
-**March 30 (Day 6): Emergency Vehicle Detection**
+**(Day 6): Emergency Vehicle Detection**
 - [ ] **Setup**: Download & integrate YOLOv8 nano (`yolov8n.pt`).
 - [ ] **Testing**: Test YOLO on a sample traffic video or your webcam feed.
 - [ ] **Integration**: Write a custom alert when it detects a truck or ambulance.
@@ -60,7 +59,7 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 6: Multi-modal UI**
-**March 31 (Day 7): Voice Navigation & Dashboard UI**
+**31 (Day 7): Voice Navigation & Dashboard UI**
 - [ ] **Voice**: Set up `pyttsx3`/`gTTS` for voice output.
 - [ ] **Audio Alerts**: Implement phrases: 
   - *"High accident risk zone ahead - reduce speed"*
@@ -72,7 +71,7 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 7: Integration & Testing**
-**April 1 (Day 8): Full System Integration**
+**(Day 8): Full System Integration**
 - [ ] **Assembly**: Connect all 5 modules into a single `main.py` Streamlit app.
 - [ ] **Testing**: Test the end-to-end flow: Weather -> Prediction -> Signal -> Detection -> Voice.
 - [ ] **Debugging**: Fix integration bugs and UI response times.
@@ -82,12 +81,12 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 ---
 
 ### **Phase 8: Documentation & Presentation**
-**April 2 (Day 9): Reports & Slides**
+**(Day 9): Reports & Slides**
 - [ ] **Report**: Complete 10-15 page project report. Use your Literature Survey and diagrams.
 - [ ] **References**: Add IEEE-formatted literature survey references (see below).
 - [ ] **Slides**: Prepare PowerPoint Flow: **Problem -> Solution -> Live Demo -> Results -> Future Scope**.
 
-**April 3 (Day 10): Dry Runs & Edge Cases**
+**(Day 10): Dry Runs & Edge Cases**
 - [ ] **QA Prep**: Prepare answers to common judge questions:
   - *Why Random Forest over Deep Learning?* (Answer: Explainability/XAI and speed)
   - *Is it real-time?*
@@ -97,32 +96,13 @@ Welcome to your structured roadmap! Today is **March 25**, and your competition 
 
 ---
 
-### **Phase 9: Final Polish**
-**April 4 (Day 11): Buffer Day**
+###**Phase 9: Final Polish**
+** (Day 11): Buffer Day**
 - [ ] Code freeze! Stop adding new features.
 - [ ] Practice the pitch verbally.
 - [ ] Ensure offline fallbacks are fully functional.
 
 ---
 
-### **Competition Day 🏆**
-**April 5**
-- [ ] **8:00 AM**: Arrive early, set up laptop, second monitor, and dashboard.
-- [ ] **Backup**: Have demo video ready and pre-loaded.
-- [ ] **Final Check**: Run a final end-to-end test before judges arrive.
-- [ ] **Showtime**: Present confidently, highlighting how your 5 components unite into a Smart City framework.
 
----
 
-## 📚 Appendix: IEEE Formatted Literature Survey References
-
-You can copy-paste these into your project report's reference section. *(Replace standard author names if you locate specific papers you prefer, otherwise these represent the general consensus in the current literature).*
-
-**Literature Summary Formatted for Report:**
-This project bridges the gap between traditional manual traffic responses and proactive, AI-driven Smart City environments. By integrating predictive analytics with multi-modal responses (visual, physical signals, and audio), the system addresses five critical dimensions of modern road safety:
-
-[1] A. Researcher et al., "Accident Severity Prediction Integrating Explainable AI and Random Forest Frameworks," *MDPI*, 2025.
-[2] B. Scientist and C. Analyst, "Multi-source Data Fusion for Environmentally Dynamic Speed Limits," *Preprints*, 2025. 
-[3] D. Engineer et al., "Implementation of Automated Priority Clearance for Emergency Vehicles using YOLO Vision Systems," *Int. J. of Scientific Res. in Eng. and Management (IJSREM)*, 2026.
-[4] E. Developer, "Reducing Mean Vehicle Delay through Reinforcement Learning-based Smart Signal Control," *Int. Res. J. on Advanced Science Hub (IRJASH)*, 2025.
-[5] F. Innovator et al., "Context-Aware Multimodal Interaction for Modern Voice-Guided Navigation," *Int. J. of Creative Res. Thoughts (IJCRT)*, 2025.
