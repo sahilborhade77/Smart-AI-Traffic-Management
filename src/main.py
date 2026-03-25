@@ -45,16 +45,18 @@ def load_ml_models():
 model, encoders = load_ml_models()
 
 # --- TOP HEADER ---
+st.image("assets/banner.png", use_container_width=True)
 st.title("🚥 Intelligent Traffic Operations Command Center")
 st.markdown("A dynamic, multi-modal AI framework integrating Computer Vision, Real-Time IoT, and Machine Learning.")
 
 # --- NAVIGATION TABS ---
-t_hub, t_predict, t_signal, t_cv, t_weather = st.tabs([
+t_hub, t_predict, t_signal, t_cv, t_weather, t_about = st.tabs([
     "🏠 Global Dashboard Hub", 
     "🔮 Accident Prediction", 
     "🚦 Smart Signal Flow", 
     "🚑 Emergency Systems", 
-    "⛈️ Weather Intelligence"
+    "⛈️ Weather Intelligence",
+    "ℹ️ System Architecture"
 ])
 
 # =========================================================
@@ -325,3 +327,20 @@ with t_weather:
                 c3.metric("System Overlap Risk Factor", f"{risk}X", "Within Nominal Bound", delta_color="normal")
             
             st.success(f"Weather Intelligence Node synchronized perfectly for {target_city}.")
+
+# =========================================================
+# TAB 6: ABOUT / ARCHITECTURE
+# =========================================================
+with t_about:
+    st.header("Project Architecture & Design")
+    st.markdown("### 🏗️ Integrated AI System Logistics")
+    st.image("assets/architecture.png", caption="AI Traffic Management Logical Flow Pipeline")
+    
+    st.markdown("""
+    #### ⚙️ Data Pipeline Overview:
+    1. **Edge Sensing**: Real-time IP camera streams and Open-Meteo satellite weather hooks.
+    2. **Perception Engine**: YOLOv8 Nano optimized for high-throughput detection of vehicles and emergency sirens.
+    3. **Decision Logic**: Dynamic Density Signal Controller (DDSC) allocates allotments based on the YOLO-derived congestion matrix.
+    4. **Prediction Layer**: RandomForest ML model trained on national datasets for accident risk mitigation.
+    5. **Dashboard Control**: Centralized Hub for visualized IOT-AI status mapping.
+    """)

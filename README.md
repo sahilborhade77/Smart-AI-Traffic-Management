@@ -1,6 +1,9 @@
 # Smart AI Traffic Management System
+![Smart Traffic Banner](assets/banner.png)
 
-A dynamic, multi-modal AI framework integrating Computer Vision, Real-Time IoT, and Machine Learning to tackle urban congestion and manage emergency vehicle routing.
+*Intelligent Flux, Optimized City*
+
+A dynamic, multi-modal AI framework integrating Computer Vision, Real-Time IoT, and Machine Learning.
 
 ## 🚀 Features
 - **Accident Prediction Protocol**: Leverages a RandomForestClassifier to analyze contextual road conditions and weather to predict accident severity with 84.1% accuracy.
@@ -20,8 +23,15 @@ A dynamic, multi-modal AI framework integrating Computer Vision, Real-Time IoT, 
 ## 📚 Research
 - [Literature Survey](docs/literature_survey.md)
 
+## 🏗️ System Architecture
+![Architecture Diagram](assets/architecture.png)
+
 ## 📸 Dashboard Visualization
-![Smart Traffic Hub Dashboard](https://via.placeholder.com/800x400.png?text=Smart+Traffic+Command+Center)
+![Smart Traffic Hub Dashboard](assets/banner.png)
+
+## 🎥 Video Demonstration
+[Watch 3-Minute Demo Video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+*(Video link currently a prototype placeholder — upload your recording to this URL)*
 
 ## 🛠️ Setup Instructions
 
