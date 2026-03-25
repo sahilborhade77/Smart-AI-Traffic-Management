@@ -45,8 +45,8 @@ def load_ml_models():
 model, encoders = load_ml_models()
 
 # --- TOP HEADER ---
-st.title("🚥 Smart AI-Driven Traffic Management Engine")
-st.markdown("A Unified Phase 1-6 Architecture built for National Competition 2026. **(Team Sahil Borhade)**")
+st.title("🚥 Intelligent Traffic Operations Command Center")
+st.markdown("A dynamic, multi-modal AI framework integrating Computer Vision, Real-Time IoT, and Machine Learning.")
 
 # --- NAVIGATION TABS ---
 t_hub, t_predict, t_signal, t_cv, t_weather = st.tabs([
