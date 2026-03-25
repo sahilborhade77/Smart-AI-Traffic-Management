@@ -6,12 +6,12 @@ class IntersectionSimulator:
         self.directions = ['North', 'South', 'East', 'West']
         
     def generate_density(self):
-        """Simulate real-world rush-hour traffic detected via YOLOv8 (skewed arrays)."""
+        """Simulated vehicle density (YOLOv8 integration in progress)."""
         return {
-            'North': random.randint(50, 85),
-            'South': random.randint(50, 85),
-            'East': random.randint(2, 12),
-            'West': random.randint(2, 12)
+            'North': random.randint(5, 85),
+            'South': random.randint(5, 85),
+            'East': random.randint(5, 85),
+            'West': random.randint(5, 85)
         }
         
     def run_fixed_time(self, densities, fixed_time=30):
@@ -81,6 +81,6 @@ def demo_simulation(num_cycles=5):
     print("="*65)
 
 if __name__ == "__main__":
-    # We use seed 42 to ensure a consistent, highly presentable demo for judges
-    random.seed(42)  
+    import time
+    random.seed(time.time())  
     demo_simulation(5)
