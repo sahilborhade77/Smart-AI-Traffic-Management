@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pkl
+*.pt
+.env
+data/
+.ipynb_checkpoints/
