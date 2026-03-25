@@ -5,5 +5,7 @@ plotly
 scikit-learn
 ultralytics
 requests
-pyttsx3
+gTTS
 opencv-python-headless
+folium
+streamlit-folium

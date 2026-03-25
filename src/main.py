@@ -45,7 +45,6 @@ def load_ml_models():
 model, encoders = load_ml_models()
 
 # --- TOP HEADER ---
-st.image("assets/banner.png", use_container_width=True)
 st.title("🚥 Intelligent Traffic Operations Command Center")
 st.markdown("A dynamic, multi-modal AI framework integrating Computer Vision, Real-Time IoT, and Machine Learning.")
 
