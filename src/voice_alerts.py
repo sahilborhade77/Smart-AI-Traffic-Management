@@ -1,44 +1,32 @@
-import pyttsx3
-import threading
-
-def initialize_engine():
-    """
-    Initializes the Windows offline text-to-speech engine.
-    Absolutely 0 lag or internet connection required.
-    """
-    engine = pyttsx3.init()
-    
-    # Set a professional speaking rate (not too fast for judges)
-    engine.setProperty('rate', 165) 
-    
-    # Attempt to pick the native Windows 10/11 Female Voice (Zira) which sounds much more modern.
-    voices = engine.getProperty('voices')
-    for voice in voices:
-        if "Zira" in voice.name or "Female" in voice.name:
-            engine.setProperty('voice', voice.id)
-            break
-            
-    return engine
+import streamlit as st
+import io
+import base64
 
 def _speak(text):
-    """Private blocking function to process the audio."""
+    """Private function to process the audio via gTTS."""
     try:
-        engine = initialize_engine()
-        engine.say(text)
-        engine.runAndWait()
+        from gtts import gTTS
+        tts = gTTS(text=text, lang='en')
+        fp = io.BytesIO()
+        tts.write_to_fp(fp)
+        fp.seek(0)
+        
+        b64 = base64.b64encode(fp.read()).decode()
+        md = f'''
+            <audio autoplay="true" style="display:none;">
+            <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+            </audio>
+            '''
+        st.markdown(md, unsafe_allow_html=True)
     except Exception as e:
         print(f"⚠️ Voice Generation Error: {e}")
 
 def play_alert_async(text):
     """
-    Public NON-BLOCKING function.
-    This is critical for Phase 7: Because Streamlit UI naturally freezes while executing code,
-    pushing the Voice Engine to a background CPU thread means your dashboard animations 
-    and YOLO video will continue rendering smoothly while the AI speaks!
+    Public NON-BLOCKING function (now using gTTS + Streamlit HTML autoplay).
     """
     print(f"🔊 [AI VOICE ALERT]: '{text}'")
-    tts_thread = threading.Thread(target=_speak, args=(text,))
-    tts_thread.start()
+    _speak(text)
 
 # =========================================================
 # REQUIRED DAY 7 ROADMAP PHRASES
