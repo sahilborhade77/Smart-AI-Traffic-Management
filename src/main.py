@@ -83,10 +83,19 @@ with t_hub:
         c2.metric("Total Vehicles (Sim)", f"{st.session_state['total_sim_vehicles']}", f"Latest Run")
         c3.metric("Avg Delay (AI)", f"{st.session_state['avg_sim_delay']:.1f} sec", f"-{st.session_state['sim_improvement_pct']:.1f}%")
     else:
-        # Default placeholder if no simulation runs yet
         c2.metric("Total Vehicles (Sim)", "0", "Run Simulator first")
         c3.metric("Avg Delay (AI)", "---", "---")
         
+    c4.metric(f"City Risk Multiplier", f"{risk_factor}X", "Elevated" if risk_factor > 1.0 else "Normal", delta_color="inverse")
+    
+    st.markdown("---")
+    
+    col_a, col_b = st.columns([2, 1])
+    
+    with col_a:
+        if st.session_state['total_sim_vehicles'] == 0:
+            st.info("Run the 'Smart Signal Flow' simulator to populate live traffic metrics.")
+            
         st.subheader("Regional Traffic Command Node (Live Folium)")
         import folium
         from streamlit_folium import st_folium
@@ -120,12 +129,12 @@ with t_hub:
         source_label = "🟢 LIVE DATA" if cur_weather.get('is_live') else "🔴 OFFLINE MODE (SIM)"
         st.markdown(f"**Network Status:** `{source_label}`")
         st.subheader("Autonomous System Logs")
-        st.info(f"14:32:45 | 📡 Weather sync: Mumbai ({cur_weather.get('condition')})", icon="☁️")
-        st.success("14:32:01 | 🟩 Green Wave executed flawlessly (Sector 4).", icon="✅")
-        st.warning("14:31:12 | ⚠️ Priority Ambulance YOLO detection confirmed.", icon="🚑")
-        st.error("14:30:00 | 🛑 Machine Learning Minor Accident Factor met.", icon="💥")
+        st.info(f"{time.strftime('%H:%M:%S')} | 📡 Weather sync: Mumbai ({cur_weather.get('condition')})", icon="☁️")
+        st.success(f"{time.strftime('%H:%M:%S')} | 🟩 Green Wave executed (Sector 4).", icon="✅")
+        st.warning(f"{time.strftime('%H:%M:%S')} | ⚠️ Priority Ambulance detected.", icon="🚑")
+        st.error(f"{time.strftime('%H:%M:%S')} | 🛑 Accident Risk detected.", icon="💥")
         
-        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
         if st.button("🎙️ Test Audio Nav System Broadcast"):
             voice_alerts.play_alert_async("Welcome to the advanced Smart City Artificial Intelligence Traffic Dashboard.")
 
