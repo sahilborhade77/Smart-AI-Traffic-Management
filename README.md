@@ -58,4 +58,4 @@ To run this application locally, you'll need Python 3.8+ installed.
    ```
 
 ## 🔗 Live Application Link
-[Live Streamlit App](https://smart-ai-traffic-management.streamlit.app/)
+[Live Streamlit App](https://smart-ai-traffic-management1.streamlit.app/)
