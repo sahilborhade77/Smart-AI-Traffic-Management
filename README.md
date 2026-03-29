@@ -5,7 +5,6 @@ A computer vision-based traffic management system that optimizes signal timing, 
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat&logo=python)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green?style=flat&logo=opencv)
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-red?style=flat&logo=streamlit)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat)
 
 ---
